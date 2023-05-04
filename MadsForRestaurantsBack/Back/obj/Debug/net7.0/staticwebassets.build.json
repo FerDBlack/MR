@@ -1,0 +1,37 @@
+{
+  "Version": 1,
+  "Hash": "bSNG2Fv7yrqlfbd7+nLwyylur/VYEyDvSdV4XpeS0uI=",
+  "Source": "Back",
+  "BasePath": "_content/Back",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [
+    {
+      "Name": "Back\\wwwroot",
+      "Source": "Back",
+      "ContentRoot": "C:\\IES Belen\\TFC\\MR\\MadsForRestaurantsBack\\Back\\wwwroot\\",
+      "BasePath": "_content/Back",
+      "Pattern": "**"
+    }
+  ],
+  "Assets": [
+    {
+      "Identity": "C:\\IES Belen\\TFC\\MR\\MadsForRestaurantsBack\\Back\\wwwroot\\index.html",
+      "SourceId": "Back",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\IES Belen\\TFC\\MR\\MadsForRestaurantsBack\\Back\\wwwroot\\",
+      "BasePath": "_content/Back",
+      "RelativePath": "index.html",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\index.html"
+    }
+  ]
+}

@@ -1,0 +1,17 @@
+#home {
+  width: 100%;
+  height: 100%;
+}
+
+.content-block {
+  width: 70%;
+  height: auto;
+  margin: 20px auto 50px;
+  padding-left: 50px;
+  padding-right: 50px;
+
+}
+
+#reserve-button {
+  text-align: center;
+}

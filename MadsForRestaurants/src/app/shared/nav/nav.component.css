@@ -1,0 +1,34 @@
+.navigation-bar {
+  font-size:20px;
+  width: 100%;
+  height: 100px;
+  background-color: var(--nav-background);
+}
+
+#logo{
+  padding: 10px;
+}
+.navigation-bar > ul > li {
+  display: inline-block;
+  vertical-align: top;
+  margin-right: 20px;
+  line-height: 100px;
+}
+
+
+ul {
+  text-align: center;
+  display: inline-block;
+  vertical-align: top;
+}
+
+li {
+  color: #fff;
+  text-decoration: none;
+  padding: 0 20px;
+}
+
+li:hover {
+  background-color: #555;
+}
+

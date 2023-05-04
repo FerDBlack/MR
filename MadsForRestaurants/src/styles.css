@@ -1,0 +1,36 @@
+/* You can add global styles to this file, and also import other style files */
+:root {
+  --nav-background: #B38865;
+  --footer-background: #666666;
+  --font-family: "Bodoni MT,Didot,Didot LT STD,Hoefler Text,Garamond,Times New Roman,serif";
+}
+
+*{
+  font-family: var(--font-family);
+}
+body{
+  overflow-x: hidden;
+}
+app-root{
+}
+
+header {
+  position: absolute;
+  top: 0;
+}
+
+footer {
+  position: fixed;
+  bottom: 0;
+  height: 40px;
+  width: 100%;
+  background-color: var(--footer-background);
+
+}
+
+#routerOutlet {
+  padding-top: 60px; /* igual a la altura del encabezado */
+  padding-bottom: 40px; /* igual a la altura del encabezado */
+}
+
+

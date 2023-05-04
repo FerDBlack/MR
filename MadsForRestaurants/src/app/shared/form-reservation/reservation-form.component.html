@@ -1,0 +1,45 @@
+<div class="myForm">
+
+  <form [formGroup]="reservationForm" (ngSubmit)="onSubmit()">
+
+    <!--Name Input-->
+    <div class="mb-3 row">
+      <label class="col-sm-9 col-form-label">
+        Nombre:
+        <input class="form-control" type="text" formControlName="nombre" placeholder="Nombre">
+      </label>
+    </div>
+
+    <!--Second Name Input-->
+    <div class="mb-3 row">
+      <label class="col-sm-9 col-form-label">
+        Apellido:
+        <input class="form-control" type="text" formControlName="apellido">
+      </label>
+    </div>
+
+    <!--Phone Input-->
+    <div class="mb-3 row">
+      <label class="col-sm-9 col-form-label">
+        Teléfono:
+        <input class="form-control" type="tel" formControlName="telefono">
+      </label>
+    </div>
+
+
+    <!--Mail Input-->
+    <div class="mb-3 row">
+      <label class="col-sm-9 col-form-label">
+
+        Correo electrónico:
+        <input class="form-control" type="email" formControlName="correo">
+      </label>
+    </div>
+
+
+    <!--Button Submit-->
+    <div class="col">
+      <button class="btn btn-primary" type="submit" [disabled]="!reservationForm.valid">Enviar</button>
+    </div>
+  </form>
+</div>

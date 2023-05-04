@@ -1,0 +1,10 @@
+
+<!--Se enseña en el caso de que no hay trabajador o si lo hay que sea 'S' de sala-->
+<div *ngIf="worker?.charge === 'S'|| !worker">
+<app-tables-map [tables]="tables"></app-tables-map>
+</div>
+
+<app-grid-reservation [tables]="tables"></app-grid-reservation>
+
+<!--Si existe el cliente, se pinta la información en el formulario.-->
+<app-form-reservation></app-form-reservation>

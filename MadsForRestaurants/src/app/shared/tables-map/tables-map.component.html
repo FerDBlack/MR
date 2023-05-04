@@ -1,0 +1,13 @@
+<div id="map">
+  <div *ngFor="let table of tables">
+    <div [ngClass]="{'occupied': table.occupied, 'empty': !table.occupied}"
+         [style.left]="table.x + unit" [style.top]="table.y + unit">
+      <div class="table">
+        {{ table.name }}
+      </div>
+      <div class="circle"></div>
+    </div>
+  </div>
+</div>
+
+<!--Poner disclaimer Dispondrá de su mesa durante 1 hora y 45 minutos en caso de estar ocupada en el siguiente turno.-->
