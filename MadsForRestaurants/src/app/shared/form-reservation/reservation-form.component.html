@@ -6,7 +6,8 @@
     <div class="mb-3 row">
       <label class="col-sm-9 col-form-label">
         Nombre:
-        <input class="form-control" type="text" formControlName="nombre" placeholder="Nombre">
+
+        <input class="form-control" type="text" formControlName="name" placeholder="Nombre">
       </label>
     </div>
 
@@ -14,15 +15,17 @@
     <div class="mb-3 row">
       <label class="col-sm-9 col-form-label">
         Apellido:
-        <input class="form-control" type="text" formControlName="apellido">
+        <input class="form-control" type="text" formControlName="secondName">
       </label>
     </div>
+    <!--TODO arreglar toast-->
+    <app-toast *ngIf="showToast" [message]="message"></app-toast>
 
     <!--Phone Input-->
     <div class="mb-3 row">
       <label class="col-sm-9 col-form-label">
         Teléfono:
-        <input class="form-control" type="tel" formControlName="telefono">
+        <input class="form-control" type="tel" formControlName="phone">
       </label>
     </div>
 
@@ -32,7 +35,7 @@
       <label class="col-sm-9 col-form-label">
 
         Correo electrónico:
-        <input class="form-control" type="email" formControlName="correo">
+        <input class="form-control" type="email" formControlName="email">
       </label>
     </div>
 

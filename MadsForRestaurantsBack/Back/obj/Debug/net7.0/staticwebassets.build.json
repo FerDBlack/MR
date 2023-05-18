@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "bSNG2Fv7yrqlfbd7+nLwyylur/VYEyDvSdV4XpeS0uI=",
+  "Hash": "AqPaFWMZMHgyypbZODyVnnuhjMYIeWAOWJk4x2PdnE4=",
   "Source": "Back",
   "BasePath": "_content/Back",
   "Mode": "Default",
@@ -10,17 +10,17 @@
     {
       "Name": "Back\\wwwroot",
       "Source": "Back",
-      "ContentRoot": "C:\\IES Belen\\TFC\\MR\\MadsForRestaurantsBack\\Back\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\fgj12\\TFC\\MR\\MadsForRestaurantsBack\\Back\\wwwroot\\",
       "BasePath": "_content/Back",
       "Pattern": "**"
     }
   ],
   "Assets": [
     {
-      "Identity": "C:\\IES Belen\\TFC\\MR\\MadsForRestaurantsBack\\Back\\wwwroot\\index.html",
+      "Identity": "C:\\Users\\fgj12\\TFC\\MR\\MadsForRestaurantsBack\\Back\\wwwroot\\index.html",
       "SourceId": "Back",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\IES Belen\\TFC\\MR\\MadsForRestaurantsBack\\Back\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\fgj12\\TFC\\MR\\MadsForRestaurantsBack\\Back\\wwwroot\\",
       "BasePath": "_content/Back",
       "RelativePath": "index.html",
       "AssetKind": "All",

@@ -8,6 +8,7 @@ using NuGet.Protocol;
 namespace Back.Controllers
 {
     [ApiController]
+    [Route("client")]
     public class ClientController : ControllerBase
     {
         private readonly ApplicationDbContext _context;
@@ -18,7 +19,6 @@ namespace Back.Controllers
         }
 
         [HttpGet]
-        [Route("clients")]
         public async Task<ActionResult<IEnumerable<Client>>> GetClients()
         {
             var clients = await _context.Client.ToListAsync();
@@ -39,17 +39,43 @@ namespace Back.Controllers
             return Ok(client.ToJson());
         }
         
+        [HttpGet]
+        [Route("/check")]
+        public async Task<ActionResult<Client>> GetClientByNameAndPhone(string name, string phone)
+        {
+            var clientName = name; 
+            var clientPhone = phone; 
+            var client = await _context.Client
+                .Where(c => c.name == clientName && c.phone == clientPhone)
+                .Select(c => new {
+                    c.name,
+                    c.secondName,
+                    c.phone,
+                    c.email,
+                    c.reservations
+                })
+                .FirstOrDefaultAsync();
+
+            
+            if (client == null)
+            {
+                return NotFound();
+            }
+
+            return Ok(client.ToJson());
+        }
+
+        
         // POST: client
-        [ActionName("client/add")]/*This required for CreatedAtAction in Post method otherwise has to version the API method*/
         [HttpPost]
-        [Route("client/add")]
+        [Route("/add")]
         public async Task<ActionResult<Client>> PostClient(Client client)
         {
             _context.Client.Add(client);
             
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction(nameof(GetClient), new { idClient = client.id }, client);
+            return Ok(client.ToJson()); 
         }
         // PUT: client/5
         [HttpPut("{id}")]

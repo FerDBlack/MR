@@ -9947,11 +9947,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\IES Belen\\TFC\\MR\\MadsForRestaurantsBack\\Back\\Back.csproj",
+      "projectUniqueName": "C:\\Users\\fgj12\\TFC\\MR\\MadsForRestaurantsBack\\Back\\Back.csproj",
       "projectName": "Back",
-      "projectPath": "C:\\IES Belen\\TFC\\MR\\MadsForRestaurantsBack\\Back\\Back.csproj",
+      "projectPath": "C:\\Users\\fgj12\\TFC\\MR\\MadsForRestaurantsBack\\Back\\Back.csproj",
       "packagesPath": "C:\\Users\\fgj12\\.nuget\\packages\\",
-      "outputPath": "C:\\IES Belen\\TFC\\MR\\MadsForRestaurantsBack\\Back\\obj\\",
+      "outputPath": "C:\\Users\\fgj12\\TFC\\MR\\MadsForRestaurantsBack\\Back\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\fgj12\\AppData\\Roaming\\NuGet\\NuGet.Config"
@@ -10024,7 +10024,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Users\\fgj12\\.dotnet\\sdk\\7.0.202\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Users\\fgj12\\.dotnet\\sdk\\7.0.203\\RuntimeIdentifierGraph.json"
       }
     }
   }

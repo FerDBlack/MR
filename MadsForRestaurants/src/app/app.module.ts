@@ -10,7 +10,7 @@ import {HomeComponent} from './pages/home/home.component';
 import {ReservationsComponent} from './pages/reservations/reservations.component';
 import {RouterLink, RouterLinkActive, RouterOutlet} from "@angular/router";
 import {ReservationFormComponent} from './shared/form-reservation/reservation-form.component';
-import {ReactiveFormsModule} from "@angular/forms";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {GridReservationComponent} from './shared/grid-reservation/grid-reservation.component';
 import {TablesMapComponent} from './shared/tables-map/tables-map.component';
 import { ClientViewComponent } from './components/client-view/client-view.component';
@@ -18,6 +18,7 @@ import { WorkerViewComponent } from './components/worker-view/worker-view.compon
 import { LoginComponent } from './pages/login/login.component';
 import {PipesModule} from "./pipes/pipes/pipes.module";
 import {HttpClientModule} from "@angular/common/http";
+import { ToastComponent } from './shared/toast/toast.component';
 
 @NgModule({
   declarations: [
@@ -32,18 +33,20 @@ import {HttpClientModule} from "@angular/common/http";
     ClientViewComponent,
     WorkerViewComponent,
     LoginComponent,
+    ToastComponent,
   ],
-  imports: [
-    BrowserModule,
-    NgOptimizedImage,
-    AppRoutingModule,
-    RouterLinkActive,
-    RouterLink,
-    RouterOutlet,
-    ReactiveFormsModule,
-    PipesModule,
-    HttpClientModule,
-  ],
+    imports: [
+        BrowserModule,
+        NgOptimizedImage,
+        AppRoutingModule,
+        RouterLinkActive,
+        RouterLink,
+        RouterOutlet,
+        ReactiveFormsModule,
+        PipesModule,
+        HttpClientModule,
+        FormsModule,
+    ],
   providers: [],
   bootstrap: [AppComponent]
 })

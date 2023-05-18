@@ -1,5 +1,5 @@
 import {Component, Input} from '@angular/core';
-import {TableType} from "../../interfaces/tables.interface";
+import {TableType} from "../../interfaces/tableType.interface";
 
 
 @Component({

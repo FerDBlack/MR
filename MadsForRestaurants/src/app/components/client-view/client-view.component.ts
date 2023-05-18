@@ -1,5 +1,5 @@
 import {Component, Input} from '@angular/core';
-import {ClientType} from "../../interfaces/client.interface";
+import {ClientType} from "../../interfaces/clientType.interface";
 
 @Component({
   selector: 'app-client-view',

@@ -6,5 +6,24 @@
 
 <app-grid-reservation [tables]="tables"></app-grid-reservation>
 
-<!--Si existe el cliente, se pinta la información en el formulario.-->
-<app-form-reservation></app-form-reservation>
+<div class="container">
+  <div class="card p-3">
+    <h3 class="mb-3">¿Ya eres cliente?</h3>
+    <div class="form-group">
+      <input type="text" class="form-control" [(ngModel)]="name" id="name" placeholder="Nombre" />
+    </div>
+    <div class="form-group mt-2">
+      <input type="text" class="form-control" [(ngModel)]="phone" id="phone" placeholder="Teléfono" />
+    </div>
+  </div>
+  <div class="row mt-3">
+    <div class="col-2">
+      <button class="btn btn-primary " (click)="checkClient()">Confirmar</button>
+    </div>
+    <div class="col-2">
+      <button class="btn btn-secondary " (click)="checkNewClient()">No</button>
+    </div>
+  </div>
+</div>
+
+<app-form-reservation *ngIf="newClientCheck" [client]="client"></app-form-reservation>
