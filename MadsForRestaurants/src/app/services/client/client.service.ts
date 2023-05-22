@@ -21,26 +21,27 @@ export class ClientService {
   }
 
   getClient(id: number): Observable<ClientType> {
-    const url = `${this.apiUrl}/${id}`;
+    const url = `${this.apiUrl}/client/${id}`;
     return this.http.get<ClientType>(url);
   }
   getCheckClient(name: string, phone: string): Observable<ClientType> {
-    const url = `${this.apiUrl}/check?name=${name}&phone=${phone}`;
+    const url = `${this.apiUrl}/client/check?name=${name}&phone=${phone}`;
     return this.http.get<ClientType>(url);
   }
 
   postClient(client: ClientType): Observable<ClientType> {
-    const url = `${this.apiUrl}/add`;
+    const url = `${this.apiUrl}/client/add`;
     return this.http.post<ClientType>(url, JSON.stringify(client), { headers: this.httpHeaders });
   }
 
   putClient(id: number, client: ClientType): Observable<void> {
-    const url = `${this.apiUrl}/${id}`;
+    const url = `${this.apiUrl}/client/${id}`;
     return this.http.put<void>(url, JSON.stringify(client), { headers: this.httpHeaders });
   }
 
+
   deleteClient(id: number): Observable<void> {
-    const url = `${this.apiUrl}/${id}`;
+    const url = `${this.apiUrl}/client/${id}`;
     return this.http.delete<void>(url);
   }
 }

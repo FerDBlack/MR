@@ -4,7 +4,6 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using NuGet.Protocol;
 
-
 namespace Back.Controllers
 {
     [ApiController]
@@ -38,16 +37,17 @@ namespace Back.Controllers
 
             return Ok(client.ToJson());
         }
-        
-        [HttpGet]
-        [Route("/check")]
+
+        [HttpGet("check")]
         public async Task<ActionResult<Client>> GetClientByNameAndPhone(string name, string phone)
         {
-            var clientName = name; 
-            var clientPhone = phone; 
+            var clientName = name;
+            var clientPhone = phone;
             var client = await _context.Client
                 .Where(c => c.name == clientName && c.phone == clientPhone)
-                .Select(c => new {
+                .Select(c => new
+                {
+                    c.id,
                     c.name,
                     c.secondName,
                     c.phone,
@@ -56,31 +56,34 @@ namespace Back.Controllers
                 })
                 .FirstOrDefaultAsync();
 
-            
+
             if (client == null)
             {
                 return NotFound();
             }
 
+            Console.WriteLine(client);
+
             return Ok(client.ToJson());
         }
 
-        
+
         // POST: client
-        [HttpPost]
-        [Route("/add")]
+        [HttpPost("add")]
         public async Task<ActionResult<Client>> PostClient(Client client)
         {
             _context.Client.Add(client);
-            
+
             await _context.SaveChangesAsync();
 
-            return Ok(client.ToJson()); 
+            return Ok(client.ToJson());
         }
+
         // PUT: client/5
         [HttpPut("{id}")]
         public async Task<IActionResult> PutClient(int id, Client client)
         {
+            Console.WriteLine(client);
             if (id != client.id)
             {
                 return BadRequest();

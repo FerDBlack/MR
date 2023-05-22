@@ -4,7 +4,7 @@ import {WorkerType} from "../../interfaces/workerType.interface";
 import {TableService} from "../../services/table/table.service";
 import {ClientService} from "../../services/client/client.service";
 import {ClientType} from "../../interfaces/clientType.interface";
-import {CommunicationService} from "../../services/comunication/communication.service";
+
 @Component({
   selector: 'app-reservations',
   templateUrl: './reservations.component.html',
@@ -23,7 +23,6 @@ export class ReservationsComponent implements OnInit {
   constructor(
     private  _tableService:TableService,
     private  _clientService:ClientService,
-    private   _communicationService:CommunicationService
   ) {}
 
   ngOnInit(): void {
@@ -43,10 +42,9 @@ export class ReservationsComponent implements OnInit {
     this._clientService.getCheckClient(this.name, this.phone).subscribe(
       (client: ClientType) => {
         this.client = client;
-        this.newClientCheck = true;
-        this._communicationService.enviarPulso()
-
         console.log('Cliente obtenido:', this.client);
+        this.newClientCheck = true;
+
       },
       (error) => {
         console.log('Error al obtener el cliente', error);

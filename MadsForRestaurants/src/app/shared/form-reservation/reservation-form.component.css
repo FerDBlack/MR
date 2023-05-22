@@ -20,3 +20,7 @@ button{
   display: flex;
 
 }
+
+#editButton{
+  visibility: hidden;
+}
