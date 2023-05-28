@@ -2,3 +2,26 @@
 .tables-section h1{
 text-align: center;
 }
+
+.div-text-reservation{
+  align-items: center;
+  text-align: center;
+}
+
+#form-check-client{
+  width: 30%;
+  height: 100%;
+}
+
+#form-check-client button{
+z-index: 100;
+}
+
+#form-new-client{
+  margin: auto;
+}
+
+#client-card{
+width: 60%;
+  margin: auto;
+}

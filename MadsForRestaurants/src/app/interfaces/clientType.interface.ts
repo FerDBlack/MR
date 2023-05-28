@@ -1,3 +1,4 @@
+import {ReservationType} from "./reservationType.interface";
 
 export interface ClientType {
   id?:number;
@@ -5,5 +6,5 @@ export interface ClientType {
   secondName: string;
   phone: string;
   email: string;
-  reservations: [];
+  reservations: ReservationType[];
 }

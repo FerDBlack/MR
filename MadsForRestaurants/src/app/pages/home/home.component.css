@@ -14,4 +14,15 @@
 
 #reserve-button {
   text-align: center;
+  border: 2px solid #7e614a;
+  background-color: #efeded;
+  width: 20%;
+}
+
+#reserve-button *{
+  font-size: 20px;
+}
+
+#presentationText{
+  font-size: 20px;
 }

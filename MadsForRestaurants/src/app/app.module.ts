@@ -11,14 +11,11 @@ import {ReservationsComponent} from './pages/reservations/reservations.component
 import {RouterLink, RouterLinkActive, RouterOutlet} from "@angular/router";
 import {ReservationFormComponent} from './shared/form-reservation/reservation-form.component';
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
-import {GridReservationComponent} from './shared/grid-reservation/grid-reservation.component';
 import {TablesMapComponent} from './shared/tables-map/tables-map.component';
-import { ClientViewComponent } from './components/client-view/client-view.component';
-import { WorkerViewComponent } from './components/worker-view/worker-view.component';
-import { LoginComponent } from './pages/login/login.component';
-import {PipesModule} from "./pipes/pipes/pipes.module";
+import {PipesModule} from "./pipes/pipes.module";
 import {HttpClientModule} from "@angular/common/http";
-import { ToastComponent } from './shared/toast/toast.component';
+import {ToastComponent} from './shared/toast/toast.component';
+import {ReserverComponent} from './shared/reserver/reserver.component';
 
 @NgModule({
   declarations: [
@@ -28,25 +25,22 @@ import { ToastComponent } from './shared/toast/toast.component';
     HomeComponent,
     ReservationsComponent,
     ReservationFormComponent,
-    GridReservationComponent,
     TablesMapComponent,
-    ClientViewComponent,
-    WorkerViewComponent,
-    LoginComponent,
     ToastComponent,
+    ReserverComponent,
   ],
-    imports: [
-        BrowserModule,
-        NgOptimizedImage,
-        AppRoutingModule,
-        RouterLinkActive,
-        RouterLink,
-        RouterOutlet,
-        ReactiveFormsModule,
-        PipesModule,
-        HttpClientModule,
-        FormsModule,
-    ],
+  imports: [
+    BrowserModule,
+    NgOptimizedImage,
+    AppRoutingModule,
+    RouterLinkActive,
+    RouterLink,
+    RouterOutlet,
+    ReactiveFormsModule,
+    PipesModule,
+    HttpClientModule,
+    FormsModule,
+  ],
   providers: [],
   bootstrap: [AppComponent]
 })

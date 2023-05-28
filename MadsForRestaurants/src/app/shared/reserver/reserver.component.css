@@ -1,0 +1,8 @@
+.card{
+  width: 60%;
+  margin: auto;
+}
+
+.form-error{
+  color: darkred;
+}

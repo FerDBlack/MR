@@ -8,6 +8,5 @@ export interface ReservationType{
   clientId: number;
   tableId: number;
   name: string;
-  client: ClientType;
-  table: TableType;
+
 }

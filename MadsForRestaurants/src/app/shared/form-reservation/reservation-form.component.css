@@ -24,3 +24,7 @@ button{
 #editButton{
   visibility: hidden;
 }
+
+.form-error{
+  color: darkred;
+}

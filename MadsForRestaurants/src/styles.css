@@ -2,7 +2,8 @@
 :root {
   --nav-background: #B38865;
   --footer-background: #666666;
-  --font-family: "Bodoni MT,Didot,Didot LT STD,Hoefler Text,Garamond,Times New Roman,serif";
+  --font-family: "'Josefin Sans', sans-serif";
+  --font-color:#393939;
 }
 
 *{
@@ -33,4 +34,7 @@ footer {
   padding-bottom: 40px; /* igual a la altura del encabezado */
 }
 
+h1{
+  color: var(--font-color);
+}
 

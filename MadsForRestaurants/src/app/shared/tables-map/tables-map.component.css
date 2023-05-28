@@ -1,38 +1,108 @@
 
 #map{
   position: relative;
-  background-color: #7a7373;
-  width: 90%;
+ background-image: url("src/assets/background_reservation_table.jpg");
+  border: 10px solid #5e4837;
+  border-radius: 10px;
+  width: 65%;
   height: 400px;
   margin: 20px auto 20px;
-  padding: 20px;
 
 
 }
 
 .table{
-  margin: 0 auto 0;
   padding: 10px;
   width: 100px; /* ancho de la mesa */
   height: 50px; /* altura de la mesa */
-  background-color: #D2B48C; /* color de relleno de la mesa */
-  border: 2px solid #8B4513; /* borde de la mesa */
   position: relative;
+}
+
+#div-reservation{
+  transform: rotateZ(90deg);
+
+
+}
+#btn-reservation{
+
 }
 .occupied {
   position: relative;
   width: 10%;
   padding: 20px;
-  border: 1px solid black;
-    background-color: #bb3d3d;
+  background-color: #d31515;
   border-radius: 40px;
-
+  margin-left: 50%;
 }
 
 .empty {
   position: relative;
   width: 10%;
-  border: 1px solid black;
-  padding: 20px; background-color: #2d8a2d;
+  padding: 20px;
+  background-color: #2d8a2d;
   border-radius: 40px;
+  margin-left: auto;
+
+}
+
+#table-wrapper {
+  width: 100px;
+  position: relative;
+  height: 150px;
+  transform: rotate(-90deg);
+}
+.the-table {
+  position:    absolute;
+  left: 100px;
+  top: 100px;
+  height: 90px;
+  width: 60px;
+  background-color: #5e4837;
+  box-shadow: 0 3px 9pt rgba(0, 0, 0, .23), 0 3px 9pt rgba(0, 0, 0, .16);
+}
+
+.chair {
+  position: absolute;
+  width: 40px;
+  height: 40px;
+  background-color: black;
+  background-color: #5e4837;
+  border-radius: 13%/100px 100px 0 0;
+  perspective: 150px;
+  box-shadow: 0 3px 9pt rgba(0, 0, 0, .23), 0 3px 9pt rgba(0, 0, 0, .16);
+
+&:before {
+   transform: rotateX(160deg);
+   position: absolute;
+   width: 35px;
+   height: 30px;
+   background-color: #7e614a;
+   top: -15px;
+   left: 2px;
+   content: " ";
+   border-radius: 13%/100px 100px 0 0;
+ }
+
+
+&:nth-child(1) {
+   top:70px;
+   left: 109px;
+ }
+&:nth-child(2) {
+   top: 125px;
+   left:70px;
+   transform: rotate(-90deg);
+ }
+
+&:nth-child(3) {
+   right: -90px;
+   top: 125px;
+   transform: rotate(90deg);
+ }
+
+&:nth-child(4) {
+   top: 180px;
+   left: 110px;
+   transform: rotate(180deg);
+ }
 }

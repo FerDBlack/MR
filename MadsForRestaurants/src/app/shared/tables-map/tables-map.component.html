@@ -1,12 +1,24 @@
 <div id="map">
   <div *ngFor="let table of tables">
-    <div [ngClass]="{'occupied': table.occupied, 'empty': !table.occupied}"
-         [style.left]="table.x + unit" [style.top]="table.y + unit">
-      <div class="table">
-        {{ table.name }}
+    <div id="table-wrapper" [style.left]="table.x + unit" [style.top]="table.y + unit">
+      <div class="chair left"></div>
+      <div class="chair left"></div>
+      <div class="chair right"></div>
+      <div class="chair right"></div>
+      <div class="the-table">
+        <div id="div-reservation">
+          <button id="btn-reservation"
+                  *ngIf="!table.occupied"
+                  (click)="makeReserve(table)">
+            RESERVAR
+          </button>
+          {{table.name}}
+          <div [ngClass]="{'occupied': table.occupied, 'empty': !table.occupied}"></div>
+
+        </div>
       </div>
-      <div class="circle"></div>
     </div>
+
   </div>
 </div>
 

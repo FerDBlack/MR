@@ -9,10 +9,10 @@ public class Reservation
     public int id { get; set; }
     public DateTime date { get; set; }
     public int numClients { get; set; }
+    [ForeignKey("clientId")]
     public int clientId { get; set; }
+    [ForeignKey("tableId")]
     public int tableId { get; set; }
     public string name { get; set; }
 
-    public Client client { get; set; }
-    public Table table { get; set; }
 }

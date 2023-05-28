@@ -11,6 +11,7 @@ public class Client
     public string secondName { get; set; }
     public string phone { get; set; }
     public string email { get; set; }
+    
     public ICollection<Reservation> reservations { get; set; }
 
 }

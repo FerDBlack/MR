@@ -13,22 +13,27 @@ import {ClientType} from "../../interfaces/clientType.interface";
 export class ReservationsComponent implements OnInit {
 
   tables: TableType[] = [];
-  newClientCheck:Boolean = false;
-  client! :ClientType;
+  newClientCheck: Boolean = false;
+  client!: ClientType;
   public name!: string;
-  public phone!   : string;
+  public phone!: string;
+  showMap: boolean = false;
 
+  showGrid: boolean = false;
   @Input() worker?: WorkerType;
 
   constructor(
-    private  _tableService:TableService,
-    private  _clientService:ClientService,
-  ) {}
+    private _tableService: TableService,
+    private _clientService: ClientService,
+  ) {
+  }
 
   ngOnInit(): void {
     this._tableService.getTables().subscribe(
       (data: TableType[]) => {
-        this.tables = data;
+       this.tables = data;
+
+
       },
       (error) => {
         console.log('Error al obtener las mesas', error);
@@ -53,7 +58,20 @@ export class ReservationsComponent implements OnInit {
   }
 
 
-    checkNewClient() {
-      this.newClientCheck = true;
+  makeNewClient() {
+    this.newClientCheck = true;
   }
+
+  waitVisibilityStatus($event: boolean) {
+    this.showMap = $event.valueOf()
+    this.showGrid = $event.valueOf()
+  }
+  cancelForm($event: boolean) {
+    this.newClientCheck = false;
+  }
+
+  receiveNewClient($event:ClientType){
+  this.client = $event
+  }
+
 }

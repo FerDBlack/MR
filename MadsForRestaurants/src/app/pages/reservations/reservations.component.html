@@ -1,29 +1,77 @@
+<!--Título sin cliente-->
 
-<!--Se enseña en el caso de que no hay trabajador o si lo hay que sea 'S' de sala-->
-<div *ngIf="worker?.charge === 'S'|| !worker">
-<app-tables-map [tables]="tables"></app-tables-map>
+<div class="div-text-reservation" *ngIf="!client && !newClientCheck">
+  <h1>Esta página solo esta disponible para usuarios registrados</h1>
+  <h4>Esta página es privada disponible solo para usuarios registrados. Regístrate o crea una nueva cuenta para acceder
+    al contenido.
+  </h4>
 </div>
 
-<app-grid-reservation [tables]="tables"></app-grid-reservation>
-
-<div class="container">
-  <div class="card p-3">
-    <h3 class="mb-3">¿Ya eres cliente?</h3>
-    <div class="form-group">
-      <input type="text" class="form-control" [(ngModel)]="name" id="name" placeholder="Nombre" />
-    </div>
-    <div class="form-group mt-2">
-      <input type="text" class="form-control" [(ngModel)]="phone" id="phone" placeholder="Teléfono" />
-    </div>
-  </div>
-  <div class="row mt-3">
-    <div class="col-2">
-      <button class="btn btn-primary " (click)="checkClient()">Confirmar</button>
-    </div>
-    <div class="col-2">
-      <button class="btn btn-secondary " (click)="checkNewClient()">No</button>
-    </div>
-  </div>
+<!--Título con cliente-->
+<div class="div-text-reservation" *ngIf="!client && newClientCheck">
+  <h1>Bienvenido a nuestra página de registro</h1>
 </div>
 
-<app-form-reservation *ngIf="newClientCheck" [client]="client"></app-form-reservation>
+<!--Check user / registro-->
+<div id="login-container" class="mt-5">
+  <div class="container" id="form-check-client" *ngIf="!client && !newClientCheck">
+    <div class="card p-3">
+      <h3 class="mb-3">¿Ya eres cliente?</h3>
+      <p>Algunas páginas de esta web están solo disponibles para usuarios registrados.</p>
+      <div class="form-group">
+        <input type="text" class="form-control" [(ngModel)]="name" id="name" placeholder="Nombre"/>
+      </div>
+      <div class="form-group mt-2">
+        <input type="text" class="form-control" [(ngModel)]="phone" id="phone" placeholder="Teléfono"/>
+      </div>
+    </div>
+    <div class="row mt-3">
+      <div class="col-2">
+        <button class="btn btn-primary" (click)="checkClient()">Confirmar</button>
+      </div>
+      <div class="col-2 ms-4">
+        <button class="btn btn-secondary" (click)="makeNewClient()">Registrate</button>
+      </div>
+    </div>
+  </div>
+
+  <!--Tarjeta perfil cliente-->
+  <div class="card mb-3" id="client-card" *ngIf="client">
+    <div class="row g-0">
+      <div class="col-md-4">
+        <img ngSrc="../../../assets/ic_user_default.svg" alt="Imagen de perfil" class="img-fluid" height="200"
+             width="200">
+      </div>
+      <div class="col-md-8">
+        <div class="card-body">
+          <h5 class="card-title">{{client.name}}{{client.secondName}}</h5>
+          <p class="card-text">{{client.phone}}</p>
+          <p class="card-text">{{client.email}}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!--Mapa general de mesas-->
+  <div *ngIf="worker?.charge === 'S'|| showMap">
+    <app-tables-map [currentClient]="client" [tables]="tables"></app-tables-map>
+  </div>
+
+
+  <div id="form-new-client">
+    <app-form-reservation
+      *ngIf="newClientCheck "
+      (newClientCheck)="cancelForm($event)"
+      (newClient)="receiveNewClient($event)"
+      (visibilityStatus)="waitVisibilityStatus($event)"
+      [client]="client"></app-form-reservation>
+  </div>
+
+</div>
+
+
+
+
+
+
+
