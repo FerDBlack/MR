@@ -4,6 +4,8 @@ import {ClientType} from "../../interfaces/clientType.interface";
 import {TableType} from "../../interfaces/tableType.interface";
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {ReservationType} from "../../interfaces/reservationType.interface";
+import {ReservationService} from "../../services/reservation/reservation.service";
+import {min} from "rxjs";
 
 @Component({
   selector: 'app-reserver',
@@ -14,16 +16,20 @@ export class ReserverComponent implements OnInit {
   currentClient!: ClientType;
   currentTable!: TableType;
   reservationForm: FormGroup;
+  minDate: string;
+  maxDate: string;
+  tableOccupied: boolean = false;
+  dateOutOfDate: boolean = false;
 
   constructor(
     private _route: ActivatedRoute,
+    private _reservationService: ReservationService,
     private formBuilder: FormBuilder
   ) {
     this.reservationForm = this.formBuilder.group({
       name: [
         '',
-        Validators.required,
-        Validators.pattern(/^[A-Za-z\s\xF1\xD1]+$/)
+        Validators.required
       ],
       date: [
         '',
@@ -32,7 +38,6 @@ export class ReserverComponent implements OnInit {
       numClients: [
         '',
         Validators.required,
-        Validators.pattern(/^([0-9])*$/),
       ],
       clientId: [
         {
@@ -50,10 +55,14 @@ export class ReserverComponent implements OnInit {
       ]
 
     });
+
+    const date = new Date();
+    const currentYear = date.getFullYear()
+    this.minDate = `${currentYear}-01-01`
+    this.maxDate = `${currentYear}-06-30`
   }
 
   ngOnInit() {
-
     this._route.queryParams.subscribe(params => {
       if (params['currentClient'] && params['tableSelected']) {
         this.currentClient = JSON.parse(params['currentClient']) as ClientType;
@@ -63,22 +72,66 @@ export class ReserverComponent implements OnInit {
 
     this.reservationForm.patchValue({
       clientId: this.currentClient.name,
-      tableId: this.currentTable.name
-    });
+      tableId: this.currentTable.name,
 
+    });
 
   }
 
 
   submit() {
     if (this.reservationForm.valid) {
-      const reservationData: ReservationType = this.reservationForm.value as ReservationType;
-      // Realizar acciones con los datos de la reserva
+      const reservationData = this.recoveryFormData()
+      const checkDate = reservationData.date.toString()
+      const checkTableId = reservationData.tableId
+      if (!(checkDate < new Date().toString())) {
 
-      // Limpiar el formulario
-      this.reservationForm.reset();
-    } else {
-      // Manejar la validación del formulario
+        this._reservationService.getCheckOccupiedReservation(checkDate, checkTableId).subscribe(
+          (reservesStatus: boolean) => {
+            console.log(reservationData)
+            console.log("ESTADO ACTUAL DE OCCUPIED", reservesStatus)
+            if (!reservesStatus) {
+              console.log("MESA LIBRE", reservationData)
+              this._reservationService.postReservation(reservationData).subscribe(
+                (reservation: ReservationType) => {
+                  console.log("MESA RESERVADA", reservation)
+                  this.reservationForm.reset();
+                },
+                (error) => {
+                  console.log(error)
+                }
+              )
+
+            } else {
+              console.log("MESA OCUPADA")
+              this.tableOccupied = true;
+            }
+
+          },
+          (error) => {
+            console.log(error)
+          }
+        )
+
+      }else {
+        console.log(checkDate)
+        console.log( new Date().toString())
+        this.dateOutOfDate = true;
+      }
+
     }
   }
+
+  private recoveryFormData() {
+    const name: string = this.reservationForm.get('name')?.value;
+    const date: Date = this.reservationForm.get('date')?.value;
+    const numClients: number = this.reservationForm.get('numClients')?.value;
+    const clientId: number = <number>this.currentClient.id;
+    const tableId: number = <number>this.currentTable.id;
+    const reservation: ReservationType = {date, numClients, clientId, tableId, name};
+    return reservation;
+  }
+
+
+  protected readonly min = min;
 }

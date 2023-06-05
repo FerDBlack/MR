@@ -1,0 +1,90 @@
+
+.card {
+  width: 550px;
+  height: 300px;
+  background-color: #fff;
+  background: linear-gradient(#f8f8f8, #fff);
+  box-shadow: 0 8px 16px -8px rgba(0,0,0,0.4);
+  border-radius: 6px;
+  overflow: hidden;
+  position: relative;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+.card h1 {
+  text-align: center;
+}
+
+.card .additional {
+  position: absolute;
+  width: 200px;
+  height: 100%;
+  background: linear-gradient(#6b4e23, #705334);
+  transition: width 0.4s;
+  overflow: hidden;
+  z-index: 2;
+}
+
+.card.green .additional {
+  background: linear-gradient(#92bCa6, #A2CCB6);
+}
+
+
+
+.card .additional .user-card {
+  width: 150px;
+  height: 100%;
+  position: relative;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 25%;
+}
+
+.card .additional .user-card .level,
+.card .additional .user-card .points {
+  top: 15%;
+  color: #fff;
+  text-transform: uppercase;
+  font-size: 0.75em;
+  font-weight: bold;
+  background: rgba(0,0,0,0.15);
+  padding: 5px ;
+  text-align: center;
+
+  border-radius: 100px;
+  white-space: nowrap;
+}
+
+
+
+.title{
+  margin-top: 10px;
+}
+
+
+.card .general {
+  width: 350px;
+  height: 100%;
+  background-color:#FFF;
+  position: absolute;
+  top: 0;
+  right: 0;
+  z-index: 1;
+  box-sizing: border-box;
+  padding: 0 1rem 1rem;
+}
+
+.card .general .more {
+  position: absolute;
+  bottom: 1rem;
+  right: 1rem;
+  font-size: 0.9em;
+}
+
+
+.section{
+  height:30%;
+  width:100%;
+
+}

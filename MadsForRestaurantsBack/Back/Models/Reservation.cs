@@ -7,7 +7,7 @@ public class Reservation
 {
     [Key]
     public int id { get; set; }
-    public DateTime date { get; set; }
+    public DateOnly date { get; set; }
     public int numClients { get; set; }
     [ForeignKey("clientId")]
     public int clientId { get; set; }

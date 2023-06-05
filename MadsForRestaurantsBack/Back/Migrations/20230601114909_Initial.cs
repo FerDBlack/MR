@@ -44,7 +44,6 @@ namespace Back.Migrations
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
                     name = table.Column<string>(type: "longtext", nullable: false)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    occupied = table.Column<bool>(type: "tinyint(1)", nullable: false),
                     x = table.Column<double>(type: "double", nullable: false),
                     y = table.Column<double>(type: "double", nullable: false)
                 },
@@ -55,37 +54,12 @@ namespace Back.Migrations
                 .Annotation("MySql:CharSet", "utf8mb4");
 
             migrationBuilder.CreateTable(
-                name: "TbWorker",
-                columns: table => new
-                {
-                    id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
-                    name = table.Column<string>(type: "longtext", nullable: false)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
-                    secondName = table.Column<string>(type: "longtext", nullable: false)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
-                    phone = table.Column<string>(type: "longtext", nullable: false)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
-                    email = table.Column<string>(type: "longtext", nullable: false)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
-                    password = table.Column<string>(type: "longtext", nullable: false)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
-                    charge = table.Column<string>(type: "longtext", nullable: false)
-                        .Annotation("MySql:CharSet", "utf8mb4")
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_TbWorker", x => x.id);
-                })
-                .Annotation("MySql:CharSet", "utf8mb4");
-
-            migrationBuilder.CreateTable(
                 name: "TbReservation",
                 columns: table => new
                 {
                     id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
-                    date = table.Column<DateTime>(type: "datetime(6)", nullable: false),
+                    date = table.Column<DateOnly>(type: "date", nullable: false),
                     numClients = table.Column<int>(type: "int", nullable: false),
                     clientId = table.Column<int>(type: "int", nullable: false),
                     tableId = table.Column<int>(type: "int", nullable: false),
@@ -126,9 +100,6 @@ namespace Back.Migrations
         {
             migrationBuilder.DropTable(
                 name: "TbReservation");
-
-            migrationBuilder.DropTable(
-                name: "TbWorker");
 
             migrationBuilder.DropTable(
                 name: "TbClient");

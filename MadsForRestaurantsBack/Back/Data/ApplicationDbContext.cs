@@ -8,7 +8,6 @@ namespace Back.Data
         public DbSet<Client> Client { get; set; }
         public DbSet<Reservation> Reservation { get; set; }
         public DbSet<Table> Table { get; set; }
-        public DbSet<Worker> Worker { get; set; }
 
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options)
         {

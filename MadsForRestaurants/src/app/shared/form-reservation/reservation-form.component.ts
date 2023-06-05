@@ -21,8 +21,7 @@ export class ReservationFormComponent implements OnInit, OnChanges {
 
 
   @Input() client?: ClientType;
-  buttonWarningVisible: boolean = false;
-  buttonConfirmVisible: boolean = false;
+  buttonEditVisible: boolean = false;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -61,15 +60,14 @@ export class ReservationFormComponent implements OnInit, OnChanges {
 
   ngOnInit() {
 
+    this.disableForm();
 
   }
 
   ngOnChanges() {
     this.fillClientForm();
     if (this.client) {
-      this.disableForm();
-      this.buttonWarningVisible = true;
-      this.buttonConfirmVisible = true;
+      this.buttonEditVisible = true;
       this.visibilityStatus.emit(true);
 
     }
@@ -124,6 +122,7 @@ export class ReservationFormComponent implements OnInit, OnChanges {
 
   enableForm() {
     this.reservationForm.enable();
+
   }
 
   editClient() {

@@ -1,7 +1,7 @@
   export interface TableType {
     id?:number;
     name: string;
-    occupied: boolean;
+    occupied?: boolean;
     x: number;
     y: number;
   }

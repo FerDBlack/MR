@@ -1,0 +1,40 @@
+
+  <div class="card">
+    <div class="additional">
+      <div class="user-card">
+        <div class="level center">
+          Cliente
+        </div>
+        <div class="points mt-3" >
+          Reservas hechas: {{client?.reservations?.length}}
+        </div>
+        <img ngSrc="../../../assets/ic_user_default.svg" alt="Imagen de perfil" class="img-fluid" height="200"
+             width="200">
+      </div>
+
+    </div>
+    <div class="general">
+      <div>
+        <div class="section">
+          <h5 class="title">Nombre:</h5>
+          <i class="fa fa-trophy"></i>
+          <div class="value">{{client?.name}}</div>
+        </div>
+        <div>
+          <h5 class="title">Apellidos:</h5>
+          <i class="fa fa-gamepad"></i>
+          <div class="value">{{client?.secondName}}</div>
+        </div>
+        <div>
+          <h5 class="title">Teléfono</h5>
+          <i class="fa fa-group"></i>
+          <div class="value">{{client?.phone}}</div>
+        </div>
+        <div>
+          <h5 class="title">Email</h5>
+          <i class="fa fa-coffee"></i>
+          <div class="value">{{client?.email}}</div>
+        </div>
+      </div>
+    </div>
+  </div>

@@ -9,7 +9,6 @@ public class Table
     [Key]
     public int id { get; set; }
     public string name { get; set; }
-    public bool occupied { get; set; }
     public double x { get; set; }
     public double y { get; set; }
     public ICollection<Reservation> reservations { get; set; }

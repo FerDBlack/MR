@@ -22,7 +22,7 @@ namespace Back.Controllers
         public async Task<ActionResult<IEnumerable<Reservation>>> GetReservations()
         {
             var reservations = await _context.Reservation.ToListAsync();
-            return Ok(reservations);
+            return Ok(reservations.ToJson());
         }
 
         // GET: reservation/5
@@ -39,9 +39,44 @@ namespace Back.Controllers
             return Ok(reservation.ToJson());
         }
 
+        [HttpGet]
+        [Route("today")]
+        public async Task<ActionResult<List<Reservation>>> GetReservationsToday(string date)
+        {
+            var currentDate = DateOnly.Parse(date);
+            var reserves = await _context.Reservation
+                .Where(r => r.date.Day == currentDate.Day)
+                .ToListAsync();
+
+            if (reserves == null || reserves.Count == 0)
+            {
+                return NotFound();
+            }
+
+            return Ok(reserves.ToJson());
+        }
+
+
+        [HttpGet]
+        [Route("checkOccupiedReservation")]
+        public async Task<ActionResult<bool>> CheckOccupiedReservation(string date, int tableId)
+        {
+            var currentDate = DateOnly.Parse(date);
+            var reservationExists = await _context.Reservation
+                .AnyAsync(r =>
+                    r.date == currentDate &&
+                    r.tableId == tableId
+                );
+
+            return Ok(reservationExists);
+        }
+
+
         // POST: reservation
         [HttpPost]
-        public async Task<ActionResult<Reservation>> CreateReservation(Reservation reservation)
+        [Route("add")]
+
+        public async Task<ActionResult<Reservation>> PostReservation(Reservation reservation)
         {
             _context.Reservation.Add(reservation);
             await _context.SaveChangesAsync();

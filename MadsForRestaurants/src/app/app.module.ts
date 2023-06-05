@@ -16,6 +16,7 @@ import {PipesModule} from "./pipes/pipes.module";
 import {HttpClientModule} from "@angular/common/http";
 import {ToastComponent} from './shared/toast/toast.component';
 import {ReserverComponent} from './shared/reserver/reserver.component';
+import { ProfileCardComponent } from './shared/profile-card/profile-card.component';
 
 @NgModule({
   declarations: [
@@ -28,6 +29,7 @@ import {ReserverComponent} from './shared/reserver/reserver.component';
     TablesMapComponent,
     ToastComponent,
     ReserverComponent,
+    ProfileCardComponent,
   ],
   imports: [
     BrowserModule,

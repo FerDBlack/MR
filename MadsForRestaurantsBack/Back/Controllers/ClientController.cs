@@ -62,8 +62,6 @@ namespace Back.Controllers
                 return NotFound();
             }
 
-            Console.WriteLine(client);
-
             return Ok(client.ToJson());
         }
 

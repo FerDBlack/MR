@@ -55,8 +55,8 @@ namespace Back.Migrations
                     b.Property<int>("clientId")
                         .HasColumnType("int");
 
-                    b.Property<DateTime>("date")
-                        .HasColumnType("datetime(6)");
+                    b.Property<DateOnly>("date")
+                        .HasColumnType("date");
 
                     b.Property<string>("name")
                         .IsRequired()
@@ -87,9 +87,6 @@ namespace Back.Migrations
                         .IsRequired()
                         .HasColumnType("longtext");
 
-                    b.Property<bool>("occupied")
-                        .HasColumnType("tinyint(1)");
-
                     b.Property<double>("x")
                         .HasColumnType("double");
 
@@ -101,58 +98,23 @@ namespace Back.Migrations
                     b.ToTable("TbTable");
                 });
 
-            modelBuilder.Entity("Back.Models.Worker", b =>
-                {
-                    b.Property<int>("id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    b.Property<string>("charge")
-                        .IsRequired()
-                        .HasColumnType("longtext");
-
-                    b.Property<string>("email")
-                        .IsRequired()
-                        .HasColumnType("longtext");
-
-                    b.Property<string>("name")
-                        .IsRequired()
-                        .HasColumnType("longtext");
-
-                    b.Property<string>("password")
-                        .IsRequired()
-                        .HasColumnType("longtext");
-
-                    b.Property<string>("phone")
-                        .IsRequired()
-                        .HasColumnType("longtext");
-
-                    b.Property<string>("secondName")
-                        .IsRequired()
-                        .HasColumnType("longtext");
-
-                    b.HasKey("id");
-
-                    b.ToTable("TbWorker");
-                });
-
             modelBuilder.Entity("Back.Models.Reservation", b =>
                 {
-                    b.HasOne("Back.Models.Client", "client")
+                    b.HasOne("Back.Models.Client", "Client")
                         .WithMany("reservations")
                         .HasForeignKey("clientId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Back.Models.Table", "table")
+                    b.HasOne("Back.Models.Table", "Table")
                         .WithMany("reservations")
                         .HasForeignKey("tableId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("client");
+                    b.Navigation("Client");
 
-                    b.Navigation("table");
+                    b.Navigation("Table");
                 });
 
             modelBuilder.Entity("Back.Models.Client", b =>

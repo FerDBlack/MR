@@ -39,6 +39,7 @@ namespace Back.Controllers
             return Ok(table.ToJson());
         }
 
+
         [HttpPost("add")]
         public async Task<ActionResult<Table>> PostTable(Table table)
         {

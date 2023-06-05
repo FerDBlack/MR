@@ -52,18 +52,19 @@
     <div class="container">
       <div class="row col-sm-9 ">
         <div class="d-flex justify-content-center ">
-          <button *ngIf="!buttonWarningVisible" class="btn btn-primary" type="submit"
-                  [disabled]="!reservationForm.valid">
+          <button *ngIf="!buttonEditVisible" class="btn btn-primary" type="submit" [disabled]="!reservationForm.valid">
             Enviar
           </button>
-          <button *ngIf="!buttonWarningVisible" class="btn btn-danger" (click)="cancelForm()">
+
+          <button *ngIf="!buttonEditVisible" class="btn btn-danger" (click)="cancelForm()">
             Cancelar
           </button>
-          <button *ngIf="buttonConfirmVisible" class="btn btn-success" (click)="editClient()" type="submit"
-                  [disabled]="!reservationForm.valid">
+
+          <button  *ngIf="buttonEditVisible" class="btn btn-success" (click)="editClient()" type="submit" [disabled]="!reservationForm.valid">
             Confirmar
           </button>
-          <button *ngIf="buttonWarningVisible" (click)="enableForm()" class="btn btn-warning ms-3">
+
+          <button  *ngIf="buttonEditVisible" class="btn btn-warning ms-3" (click)="enableForm()">
             Editar
           </button>
         </div>

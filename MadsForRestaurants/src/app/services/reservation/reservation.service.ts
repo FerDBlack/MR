@@ -24,9 +24,17 @@ export class ReservationService {
     const url = `${this.apiUrl}/reservation/${id}`;
     return this.http.get<ReservationType>(url);
   }
+  getTodayReservation(dateToday: string): Observable<ReservationType[]> {
+    const url = `${this.apiUrl}/reservation/today?date=${dateToday}`;
+    return this.http.get<ReservationType[]>(url);
+  }
+  getCheckOccupiedReservation(dateToday: string, tableId:number): Observable<boolean> {
+    const url = `${this.apiUrl}/reservation/checkOccupiedReservation?date=${dateToday}&tableId=${tableId}`;
+    return this.http.get<boolean>(url);
+  }
 
-  createReservation(reservation: ReservationType): Observable<ReservationType> {
-    const url = `${this.apiUrl}/reservation`;
+  postReservation(reservation: ReservationType): Observable<ReservationType> {
+    const url = `${this.apiUrl}/reservation/add`;
     return this.http.post<ReservationType>(url, JSON.stringify(reservation), { headers: this.httpHeaders });
   }
 

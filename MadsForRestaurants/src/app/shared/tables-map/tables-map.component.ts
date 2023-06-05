@@ -11,7 +11,7 @@ import {ActivatedRoute, Route, Router} from "@angular/router";
 })
 export class TablesMapComponent implements OnChanges {
 
-  @Input() tables: TableType[] = [];
+  @Input() tablesFiltered: TableType[] = [];
   @Input() unit: string = 'px';
   @Input() currentClient?:ClientType;
   currentTable?:TableType;

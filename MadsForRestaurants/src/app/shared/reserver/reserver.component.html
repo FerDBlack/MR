@@ -9,12 +9,22 @@
         </div>
       </div>
       <div class="mb-3">
-        <label for="date" class="form-label">Fecha:</label>
-        <input type="date" id="date" formControlName="date" class="form-control" required>
+        <label for="date" class="form-label">Fecha y hora de reserva:</label>
+        <input type="date" id="date" [min]="minDate"
+               [max]="maxDate" formControlName="date" class="form-control" required>
         <div class="form-error" *ngIf="reservationForm.get('date')?.invalid && (reservationForm.get('date')?.dirty)">
-          La fecha es obligatoria
+          La fecha y hora de reserva son obligatorias y deben ser siempre a las 14:00.
+        </div>
+        <div class="form-error" *ngIf="dateOutOfDate">
+          La fecha no puede ser anterior al dia actual
+        </div>
+        <div class="form-error" *ngIf="tableOccupied">
+            Esa fecha esta ocupada por otra reserva, escoja otra por favor.
         </div>
       </div>
+
+
+
       <div class="mb-3">
         <label for="numClients" class="form-label">Número de comensales:</label>
         <input type="number" id="numClients" formControlName="numClients" class="form-control" required>

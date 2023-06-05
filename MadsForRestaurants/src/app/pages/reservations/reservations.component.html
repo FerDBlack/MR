@@ -19,10 +19,10 @@
       <h3 class="mb-3">¿Ya eres cliente?</h3>
       <p>Algunas páginas de esta web están solo disponibles para usuarios registrados.</p>
       <div class="form-group">
-        <input type="text" class="form-control" [(ngModel)]="name" id="name" placeholder="Nombre"/>
+        <input type="text" class="form-control" [(ngModel)]="name" id="name" placeholder="Nombre" />
       </div>
       <div class="form-group mt-2">
-        <input type="text" class="form-control" [(ngModel)]="phone" id="phone" placeholder="Teléfono"/>
+        <input type="text" class="form-control" [(ngModel)]="phone" id="phone" placeholder="Teléfono" />
       </div>
     </div>
     <div class="row mt-3">
@@ -36,29 +36,18 @@
   </div>
 
   <!--Tarjeta perfil cliente-->
-  <div class="card mb-3" id="client-card" *ngIf="client">
-    <div class="row g-0">
-      <div class="col-md-4">
-        <img ngSrc="../../../assets/ic_user_default.svg" alt="Imagen de perfil" class="img-fluid" height="200"
-             width="200">
-      </div>
-      <div class="col-md-8">
-        <div class="card-body">
-          <h5 class="card-title">{{client.name}}{{client.secondName}}</h5>
-          <p class="card-text">{{client.phone}}</p>
-          <p class="card-text">{{client.email}}</p>
-        </div>
-      </div>
-    </div>
-  </div>
+ <div class=" mb-3" id="client-card" *ngIf="client">
+     <app-profile-card  [client]="client"></app-profile-card>
+
+ </div>
 
   <!--Mapa general de mesas-->
   <div *ngIf="worker?.charge === 'S'|| showMap">
-    <app-tables-map [currentClient]="client" [tables]="tables"></app-tables-map>
+    <app-tables-map [currentClient]="client" [tablesFiltered]="tablesFiltered"></app-tables-map>
   </div>
 
 
-  <div id="form-new-client">
+  <div id="form-new-client" class="mb-5">
     <app-form-reservation
       *ngIf="newClientCheck "
       (newClientCheck)="cancelForm($event)"
