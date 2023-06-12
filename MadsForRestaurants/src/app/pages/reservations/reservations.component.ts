@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {TableType} from "../../interfaces/tableType.interface";
 import {WorkerType} from "../../interfaces/workerType.interface";
 import {TableService} from "../../services/table/table.service";
@@ -6,7 +6,6 @@ import {ClientService} from "../../services/client/client.service";
 import {ClientType} from "../../interfaces/clientType.interface";
 import {ReservationService} from "../../services/reservation/reservation.service";
 import {ReservationType} from "../../interfaces/reservationType.interface";
-
 @Component({
   selector: 'app-reservations',
   templateUrl: './reservations.component.html',
@@ -22,9 +21,9 @@ export class ReservationsComponent implements OnInit {
   public name: string = "juan";
   public phone: string = "123456789";
   showMap: boolean = false;
-
   showGrid: boolean = false;
   @Input() worker?: WorkerType;
+  activateEditEvent:boolean = false
 
   constructor(
     private _tableService: TableService,
@@ -36,6 +35,9 @@ export class ReservationsComponent implements OnInit {
   ngOnInit(): void {
 
     const currentDate = new Date().toISOString().split('T')[0];
+   //TODO DATEPICKER
+
+
     this._reservationService.getTodayReservation(currentDate).subscribe(
       (data: ReservationType[]) => {
         this.reservations = data;
@@ -49,7 +51,7 @@ export class ReservationsComponent implements OnInit {
     this._tableService.getTables().subscribe(
       (data: TableType[]) => {
         this.tables = data;
-        console.log("TABLAS", data)
+        console.log("MESAS", data)
 
       },
       (error) => {
@@ -64,6 +66,7 @@ export class ReservationsComponent implements OnInit {
   checkClient() {
     this._clientService.getCheckClient(this.name, this.phone).subscribe(
       (client: ClientType) => {
+        this.activateEditEvent=false
         this.client = client;
         this.newClientCheck = true;
         this.tablesFiltered = this.getTablesReserved(this.tables, this.reservations);
@@ -92,9 +95,11 @@ export class ReservationsComponent implements OnInit {
   }
 
 
-  makeNewClient() {
-    this.newClientCheck = true;
-  }
+    makeNewClient() {
+      this.newClientCheck = true;
+      this.activateEditEvent = true;
+
+    }
 
   waitVisibilityStatus($event: boolean) {
     this.showMap = $event.valueOf()

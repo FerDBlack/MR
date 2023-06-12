@@ -82,42 +82,43 @@ export class ReserverComponent implements OnInit {
   submit() {
     if (this.reservationForm.valid) {
       const reservationData = this.recoveryFormData()
-      const checkDate = reservationData.date.toString()
-      const checkTableId = reservationData.tableId
-      if (!(checkDate < new Date().toString())) {
+      const checkStringDate = reservationData.date.toString();
+      const currentDate = new Date();
+      currentDate.setHours(0, 0, 0, 0);
+      const formDate = new Date(reservationData.date)
+      formDate.setHours(0, 0, 0, 0)
+      const checkTableId = reservationData.tableId;
 
-        this._reservationService.getCheckOccupiedReservation(checkDate, checkTableId).subscribe(
-          (reservesStatus: boolean) => {
-            console.log(reservationData)
-            console.log("ESTADO ACTUAL DE OCCUPIED", reservesStatus)
-            if (!reservesStatus) {
-              console.log("MESA LIBRE", reservationData)
+
+      this._reservationService.getCheckOccupiedReservation(checkStringDate, checkTableId).subscribe(
+        (reservesStatus: boolean) => {
+          this.tableOccupied = false
+          if (!reservesStatus) {
+
+            if (formDate >= currentDate) {
               this._reservationService.postReservation(reservationData).subscribe(
                 (reservation: ReservationType) => {
-                  console.log("MESA RESERVADA", reservation)
+                  console.log(reservation)
                   this.reservationForm.reset();
                 },
                 (error) => {
                   console.log(error)
                 }
               )
-
             } else {
-              console.log("MESA OCUPADA")
-              this.tableOccupied = true;
+              this.dateOutOfDate = true;
             }
-
-          },
-          (error) => {
-            console.log(error)
+          } else {
+            console.log("MESA OCUPADA")
+            this.tableOccupied = true;
           }
-        )
 
-      }else {
-        console.log(checkDate)
-        console.log( new Date().toString())
-        this.dateOutOfDate = true;
-      }
+        },
+        (error) => {
+          console.log(error)
+        }
+      )
+
 
     }
   }

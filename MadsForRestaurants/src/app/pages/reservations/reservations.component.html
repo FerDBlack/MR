@@ -14,49 +14,56 @@
 
 <!--Check user / registro-->
 <div id="login-container" class="mt-5">
-  <div class="container" id="form-check-client" *ngIf="!client && !newClientCheck">
-    <div class="card p-3">
-      <h3 class="mb-3">¿Ya eres cliente?</h3>
-      <p>Algunas páginas de esta web están solo disponibles para usuarios registrados.</p>
-      <div class="form-group">
-        <input type="text" class="form-control" [(ngModel)]="name" id="name" placeholder="Nombre" />
-      </div>
-      <div class="form-group mt-2">
-        <input type="text" class="form-control" [(ngModel)]="phone" id="phone" placeholder="Teléfono" />
+  <div class="container" *ngIf="!client && !newClientCheck">
+    <div class="row">
+      <div class="form-container">
+        <div class="left-content">
+          <h3 class="title">Mads For Restaurants</h3>
+          <h4 class="sub-title">¡Aquí no serás el único!</h4>
+        </div>
+        <div class="right-content">
+          <h3 class="form-title">Login</h3>
+          <form class="form-horizontal  container form-bg">
+            <div class="form-group">
+              <label for="name">Username</label>
+              <input type="text" class="form-control" [(ngModel)]="name" id="name" name="name" placeholder="Nombre"/>
+              <br>
+              <label for="phone">Télefono</label>
+              <input type="text" class="form-control" [(ngModel)]="phone" id="phone" name="phone" placeholder="Teléfono"/>
+            </div>
+            <button class="btn signin" (click)="checkClient()">Login</button>
+          </form>
+          <span class="separator">Si no tienes cuenta aún:</span>
+          <div class="social-links">
+            <button class="btn btn-secondary" (click)="makeNewClient()">Registrate</button>
+          </div>
+        </div>
       </div>
     </div>
-    <div class="row mt-3">
-      <div class="col-2">
-        <button class="btn btn-primary" (click)="checkClient()">Confirmar</button>
-      </div>
-      <div class="col-2 ms-4">
-        <button class="btn btn-secondary" (click)="makeNewClient()">Registrate</button>
-      </div>
-    </div>
   </div>
-
-  <!--Tarjeta perfil cliente-->
- <div class=" mb-3" id="client-card" *ngIf="client">
-     <app-profile-card  [client]="client"></app-profile-card>
-
- </div>
-
-  <!--Mapa general de mesas-->
-  <div *ngIf="worker?.charge === 'S'|| showMap">
-    <app-tables-map [currentClient]="client" [tablesFiltered]="tablesFiltered"></app-tables-map>
-  </div>
-
-
-  <div id="form-new-client" class="mb-5">
-    <app-form-reservation
-      *ngIf="newClientCheck "
-      (newClientCheck)="cancelForm($event)"
-      (newClient)="receiveNewClient($event)"
-      (visibilityStatus)="waitVisibilityStatus($event)"
-      [client]="client"></app-form-reservation>
-  </div>
-
 </div>
+
+<!--Tarjeta perfil cliente-->
+<div class=" mb-3" id="client-card" *ngIf="client">
+  <app-profile-card [client]="client"></app-profile-card>
+</div>
+
+<!--Mapa general de mesas-->
+<div *ngIf="worker?.charge === 'S'|| showMap">
+  <app-tables-map [currentClient]="client" [tablesFiltered]="tablesFiltered"></app-tables-map>
+</div>
+
+
+<div id="form-new-client" class="mb-5">
+  <app-form-reservation
+    *ngIf="newClientCheck "
+    [activateEditEvent]="activateEditEvent"
+    (newClientCheck)="cancelForm($event)"
+    (newClient)="receiveNewClient($event)"
+    (visibilityStatus)="waitVisibilityStatus($event)"
+    [client]="client"></app-form-reservation>
+</div>
+
 
 
 

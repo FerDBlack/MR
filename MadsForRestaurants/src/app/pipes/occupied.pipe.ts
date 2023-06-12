@@ -1,11 +1,12 @@
 import {Pipe, PipeTransform} from "@angular/core";
+import {TableType} from "../interfaces/tableType.interface";
 
 @Pipe({
   name: 'occupied'
 })
 export class OccupiedPipe implements PipeTransform {
-  transform(occupied:boolean): string {
-    return occupied?"Ocupado":"Disponible"
+  transform(table: TableType): string {
+    return table.occupied?"Reservar otro día":"Reservar"
   }
 
 }

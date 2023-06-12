@@ -18,6 +18,7 @@ export class ReservationFormComponent implements OnInit, OnChanges {
   @Output() visibilityStatus = new EventEmitter<boolean>();
   @Output() newClientCheck = new EventEmitter<boolean>();
   @Output() newClient = new EventEmitter<ClientType>();
+  @Input() activateEditEvent = false
 
 
   @Input() client?: ClientType;
@@ -59,8 +60,11 @@ export class ReservationFormComponent implements OnInit, OnChanges {
   }
 
   ngOnInit() {
-
-    this.disableForm();
+    if (this.activateEditEvent) {
+      this.enableForm();
+    }else {
+      this.disableForm();
+    }
 
   }
 
@@ -69,8 +73,9 @@ export class ReservationFormComponent implements OnInit, OnChanges {
     if (this.client) {
       this.buttonEditVisible = true;
       this.visibilityStatus.emit(true);
-
     }
+
+
   }
 
   onSubmit() {
