@@ -2,7 +2,7 @@
   <div class="card-body">
     <form [formGroup]="reservationForm" (ngSubmit)="submit()">
       <div class="mb-3">
-        <label for="name" class="form-label">Nombre de la persona a cargo de la  reserva:</label>
+        <label for="name" class="form-label">Nombre de la persona a cargo de la reserva:</label>
         <input type="text" id="name" formControlName="name" class="form-control" required>
         <div class="form-error" *ngIf="reservationForm.get('name')?.invalid && (reservationForm.get('name')?.dirty)">
           El nombre es obligatorio
@@ -10,8 +10,7 @@
       </div>
       <div class="mb-3">
         <label for="date" class="form-label">Fecha y hora de reserva:</label>
-        <input type="date" id="date" [min]="minDate"
-               [max]="maxDate" formControlName="date" class="form-control" required>
+        <input type="text" id="date" formControlName="date"   class="form-control" required>
         <div class="form-error" *ngIf="reservationForm.get('date')?.invalid && (reservationForm.get('date')?.dirty)">
           La fecha y hora de reserva son obligatorias y deben ser siempre a las 14:00.
         </div>
@@ -19,17 +18,17 @@
           La fecha no puede ser anterior al dia actual
         </div>
         <div class="form-error" *ngIf="tableOccupied">
-            Esa fecha esta ocupada por otra reserva, escoja otra por favor.
+          Esa fecha esta ocupada por otra reserva, escoja otra por favor.
         </div>
       </div>
-
 
 
       <div class="mb-3">
         <label for="numClients" class="form-label">Número de comensales:</label>
         <input type="number" min="1" max="8" id="numClients" formControlName="numClients" class="form-control" required>
-        <div class="form-error" *ngIf="reservationForm.get('numClients')?.invalid && (reservationForm.get('numClients')?.dirty)">
-        El nº de comensales es obligatorio
+        <div class="form-error"
+             *ngIf="reservationForm.get('numClients')?.invalid && (reservationForm.get('numClients')?.dirty)">
+          El nº de comensales es obligatorio
         </div>
       </div>
       <div class="mb-3">
@@ -40,7 +39,7 @@
         <label for="tableId" class="form-label">Nombre de la mesa</label>
         <input type="text" id="tableId" formControlName="tableId" class="form-control" required>
       </div>
-      <button type="submit" class="btn btn-primary" [disabled]="!reservationForm.valid" >Enviar</button>
+      <button type="submit" class="btn btn-primary" [disabled]="!reservationForm.valid">Enviar</button>
     </form>
   </div>
 </div>

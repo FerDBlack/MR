@@ -61,12 +61,9 @@
           </button>
 
           <button  *ngIf="buttonEditVisible" class="btn btn-success" (click)="editClient()" type="submit" [disabled]="!reservationForm.valid">
-            Confirmar
+            Confirmar cambios
           </button>
 
-          <button  *ngIf="buttonEditVisible" class="btn btn-warning ms-3" (click)="enableForm()">
-            Editar
-          </button>
         </div>
       </div>
     </div>

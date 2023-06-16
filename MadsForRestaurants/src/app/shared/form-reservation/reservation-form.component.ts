@@ -20,7 +20,6 @@ export class ReservationFormComponent implements OnInit, OnChanges {
   @Output() newClient = new EventEmitter<ClientType>();
   @Input() activateEditEvent = false
 
-
   @Input() client?: ClientType;
   buttonEditVisible: boolean = false;
 
@@ -32,20 +31,16 @@ export class ReservationFormComponent implements OnInit, OnChanges {
       name: [
         '',
         [Validators.required,
-          Validators.pattern(/^[A-Za-z\s\xF1\xD1]+$/)
         ]
       ],
       secondName: [
         '',
         [Validators.required,
-          Validators.pattern(/^[A-Za-z\s\xF1\xD1]+$/)
         ]
       ],
       phone: [
         '',
         [Validators.required,
-          Validators.minLength(7),
-          Validators.maxLength(10),
           Validators.pattern(/^([0-9])*$/),
         ]
       ],
@@ -60,11 +55,7 @@ export class ReservationFormComponent implements OnInit, OnChanges {
   }
 
   ngOnInit() {
-    if (this.activateEditEvent) {
-      this.enableForm();
-    }else {
-      this.disableForm();
-    }
+
 
   }
 
@@ -85,7 +76,7 @@ export class ReservationFormComponent implements OnInit, OnChanges {
         .subscribe(
           (data: any) => {
             // Handle success
-            this.visibilityStatus.emit(true);
+            window.location.reload();
           },
           (error: any) => {
             // Handle error

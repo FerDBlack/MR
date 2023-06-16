@@ -13,7 +13,7 @@
 </div>
 
 <!--Check user / registro-->
-<div id="login-container" class="mt-5">
+<div id="login-container">
   <div class="container" *ngIf="!client && !newClientCheck">
     <div class="row">
       <div class="form-container">
@@ -29,7 +29,8 @@
               <input type="text" class="form-control" [(ngModel)]="name" id="name" name="name" placeholder="Nombre"/>
               <br>
               <label for="phone">Télefono</label>
-              <input type="text" class="form-control" [(ngModel)]="phone" id="phone" name="phone" placeholder="Teléfono"/>
+              <input type="text" class="form-control" [(ngModel)]="phone" id="phone" name="phone"
+                     placeholder="Teléfono"/>
             </div>
             <button class="btn signin" (click)="checkClient()">Login</button>
           </form>
@@ -47,11 +48,23 @@
 <div class=" mb-3" id="client-card" *ngIf="client">
   <app-profile-card [client]="client"></app-profile-card>
 </div>
-
+<hr class="bar">
 <!--Mapa general de mesas-->
-<div *ngIf="worker?.charge === 'S'|| showMap">
-  <app-tables-map [currentClient]="client" [tablesFiltered]="tablesFiltered"></app-tables-map>
+<div *ngIf="showMap">
+
+  <div id="datepicker-content">
+    <h3>Seleccione el dia de reserva:</h3>
+    <input type="date" id="date" [min]="minDate" [max]="maxDate" [(ngModel)]="dateSelected" class="form-control"
+           required (change)="onDateChange($event)">
+    <div class="form-error" *ngIf="dateSelectedOutOfDate">
+      La fecha no puede ser inferior a la actual
+    </div>
+  </div>
+
+  <app-tables-map [currentClient]="client"  [dateSelected]="dateSelected" [tablesFiltered]="tablesFiltered"></app-tables-map>
 </div>
+
+<hr *ngIf="showMap" class="bar">
 
 
 <div id="form-new-client" class="mb-5">

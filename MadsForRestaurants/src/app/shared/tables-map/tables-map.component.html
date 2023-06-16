@@ -7,13 +7,11 @@
       <div class="chair right"></div>
       <div class="the-table">
         <div id="div-reservation">
-          <button id="btn-reservation"
-                  (click)="makeReserve(table)">
-            {{ table | occupied  }}
+          <button *ngIf="!table.occupied" id="btn-reservation" (click)="makeReserve(table)">
+            Reservar
           </button>
           {{table.name}}
           <div [ngClass]="{'occupied': table.occupied, 'empty': !table.occupied}"></div>
-
         </div>
       </div>
     </div>

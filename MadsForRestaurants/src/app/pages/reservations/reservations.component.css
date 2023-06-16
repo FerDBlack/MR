@@ -1,6 +1,18 @@
+#datepicker-content{
+  display: flex;
+  width: auto;
+  text-align: center;
+  justify-content: center;
+}
+
+#date{
+  width: 200px;
+  margin-left: 10px ;
+
+}
 
 .tables-section h1{
-text-align: center;
+  text-align: center;
 }
 
 .div-text-reservation{
@@ -43,7 +55,7 @@ width: 60%;
   vertical-align: top;
 }
 .form-container .left-content .title{
-  color: #FF97A8;
+  color: #B38865;
   font-size: 20px;
   font-weight: 300;
   letter-spacing: 2px;
@@ -72,7 +84,7 @@ width: 60%;
   text-transform: uppercase;
   padding: 0 0 2px;
   margin: 0 0 30px;
-  border-bottom: 2px solid #FF97A8;
+  border-bottom: 2px solid #B38865;
 }
 .form-container .right-content .form-horizontal {
   color: #999;
@@ -97,7 +109,7 @@ width: 60%;
 .form-container .form-horizontal .form-control:focus{ box-shadow: 0 0 5px #FF97A8; }
 .form-container .form-horizontal .signin{
   color: #fff;
-  background: linear-gradient(to right, #FF638E, #FF97A8);
+  background: linear-gradient(to right, #B38865, #B38865);
   font-size: 15px;
   font-weight: 500;
   letter-spacing: 0.5px;
@@ -110,7 +122,7 @@ width: 60%;
 }
 .form-container .form-horizontal .btn:hover,
 .form-container .form-horizontal .btn:focus{
-  box-shadow: 0 0 10px #FF97A8;
+  box-shadow: 0 0 10px #B38865;
   outline: none;
 }
 .form-container .form-horizontal .remember-me{
@@ -129,7 +141,7 @@ width: 60%;
   width: 17px;
   min-height: auto;
   margin: 0 1px 0 0;
-  border: 2px solid #FF97A8;
+  border: 2px solid #B38865;
   border-radius: 5px;
   cursor: pointer;
   display: inline-block;
@@ -211,4 +223,9 @@ width: 60%;
   }
   .form-container .left-content .title{ margin: 0 0 20px; }
   .form-container .left-content .sub-title{ font-size: 40px; }
+}
+
+
+.form-error{
+  color: darkred;
 }

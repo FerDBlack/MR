@@ -6,6 +6,7 @@ import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {ReservationType} from "../../interfaces/reservationType.interface";
 import {ReservationService} from "../../services/reservation/reservation.service";
 import {min} from "rxjs";
+import * as moment from 'moment';
 
 @Component({
   selector: 'app-reserver',
@@ -15,9 +16,9 @@ import {min} from "rxjs";
 export class ReserverComponent implements OnInit {
   currentClient!: ClientType;
   currentTable!: TableType;
+  dateSelected!: Date
+
   reservationForm: FormGroup;
-  minDate: string;
-  maxDate: string;
   tableOccupied: boolean = false;
   dateOutOfDate: boolean = false;
 
@@ -32,7 +33,10 @@ export class ReserverComponent implements OnInit {
         Validators.required
       ],
       date: [
-        '',
+        {
+          value: '',
+          disabled: true
+        },
         Validators.required
       ],
       numClients: [
@@ -56,23 +60,23 @@ export class ReserverComponent implements OnInit {
 
     });
 
-    const date = new Date();
-    const currentYear = date.getFullYear()
-    this.minDate = `${currentYear}-01-01`
-    this.maxDate = `${currentYear}-06-30`
+
   }
 
   ngOnInit() {
     this._route.queryParams.subscribe(params => {
-      if (params['currentClient'] && params['tableSelected']) {
+      if (params['currentClient'] && params['tableSelected'] && params['dateSelected']) {
         this.currentClient = JSON.parse(params['currentClient']) as ClientType;
         this.currentTable = JSON.parse(params['tableSelected']) as TableType;
+        this.dateSelected = JSON.parse(params['dateSelected']) as Date;
       }
     });
+    const dateFormatted = moment( this.dateSelected).format('YYYY-MM-DD');
 
     this.reservationForm.patchValue({
+      date: dateFormatted,
       clientId: this.currentClient.name,
-      tableId: this.currentTable.name,
+      tableId: this.currentTable.name
 
     });
 
@@ -82,36 +86,15 @@ export class ReserverComponent implements OnInit {
   submit() {
     if (this.reservationForm.valid) {
       const reservationData = this.recoveryFormData()
-      const checkStringDate = reservationData.date.toString();
-      const currentDate = new Date();
-      currentDate.setHours(0, 0, 0, 0);
       const formDate = new Date(reservationData.date)
       formDate.setHours(0, 0, 0, 0)
-      const checkTableId = reservationData.tableId;
 
 
-      this._reservationService.getCheckOccupiedReservation(checkStringDate, checkTableId).subscribe(
-        (reservesStatus: boolean) => {
-          this.tableOccupied = false
-          if (!reservesStatus) {
-
-            if (formDate >= currentDate) {
-              this._reservationService.postReservation(reservationData).subscribe(
-                (reservation: ReservationType) => {
-                  console.log(reservation)
-                  this.reservationForm.reset();
-                },
-                (error) => {
-                  console.log(error)
-                }
-              )
-            } else {
-              this.dateOutOfDate = true;
-            }
-          } else {
-            console.log("MESA OCUPADA")
-            this.tableOccupied = true;
-          }
+      this._reservationService.postReservation(reservationData).subscribe(
+        (reservation: ReservationType) => {
+          console.log(reservation)
+          this.reservationForm.reset();
+          window.history.back();
 
         },
         (error) => {
