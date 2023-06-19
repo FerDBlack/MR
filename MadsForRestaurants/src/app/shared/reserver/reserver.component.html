@@ -24,7 +24,7 @@
 
 
       <div class="mb-3">
-        <label for="numClients" class="form-label">Número de comensales:</label>
+        <label for="numClients" class="form-label">Número de comensales (máx. 8 personas):</label>
         <input type="number" min="1" max="8" id="numClients" formControlName="numClients" class="form-control" required>
         <div class="form-error"
              *ngIf="reservationForm.get('numClients')?.invalid && (reservationForm.get('numClients')?.dirty)">

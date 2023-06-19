@@ -1,7 +1,8 @@
-<!--Título sin cliente-->
+<h1 *ngIf="showMap" id="titleReserve">Bienvenido a la reserva</h1>
 
+<!--Título sin cliente-->
 <div class="div-text-reservation" *ngIf="!client && !newClientCheck">
-  <h1>Esta página solo esta disponible para usuarios registrados</h1>
+  <h2>Esta página solo esta disponible para usuarios registrados</h2>
   <h4>Esta página es privada disponible solo para usuarios registrados. Regístrate o crea una nueva cuenta para acceder
     al contenido.
   </h4>
@@ -25,10 +26,10 @@
           <h3 class="form-title">Login</h3>
           <form class="form-horizontal  container form-bg">
             <div class="form-group">
-              <label for="name">Username</label>
+              <label for="name">Usuario</label>
               <input type="text" class="form-control" [(ngModel)]="name" id="name" name="name" placeholder="Nombre"/>
               <br>
-              <label for="phone">Télefono</label>
+              <label for="phone">Teléfono</label>
               <input type="text" class="form-control" [(ngModel)]="phone" id="phone" name="phone"
                      placeholder="Teléfono"/>
             </div>

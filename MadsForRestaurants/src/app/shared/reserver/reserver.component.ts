@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {ActivatedRoute} from "@angular/router";
 import {ClientType} from "../../interfaces/clientType.interface";
 import {TableType} from "../../interfaces/tableType.interface";
@@ -94,6 +94,7 @@ export class ReserverComponent implements OnInit {
         (reservation: ReservationType) => {
           console.log(reservation)
           this.reservationForm.reset();
+          //modal
           window.history.back();
 
         },

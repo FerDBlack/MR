@@ -31,11 +31,9 @@
     }
 
     makeReserve(currentTable: TableType) {
-      console.log("componente tables-map", currentTable);
 
       this.currentTable = currentTable;
       if (this.currentClient && this.currentClient.id) {
-        console.log("goooooof", this.currentClient)
 
         this._router.navigate(['/reserve-page', this.currentClient.id], {
           queryParams: {
@@ -45,8 +43,8 @@
           }
         });
       } else {
-        console.log("EERORRRRRR", this.newClient
-        )      }
+        console.log("Error", this.newClient)
+      }
     }
 
 

@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {TableType} from "../../interfaces/tableType.interface";
 import {WorkerType} from "../../interfaces/workerType.interface";
 import {TableService} from "../../services/table/table.service";
@@ -27,6 +27,7 @@ export class ReservationsComponent implements OnInit {
   showMap: boolean = false;
   showGrid: boolean = false;
   @Input() worker?: WorkerType;
+
   activateEditEvent: boolean = false
   dateSelected!: Date
   minDate: string;
@@ -156,6 +157,8 @@ export class ReservationsComponent implements OnInit {
   receiveNewClient($event: ClientType) {
     this.newClient = $event
   }
+
+
 
   refreshTableOccupied() {
     this.tablesFiltered.map(table => table.occupied = false)
