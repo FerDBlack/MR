@@ -1,11 +1,10 @@
-import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
-import {ActivatedRoute} from "@angular/router";
+import {Component, OnInit} from '@angular/core';
+import {ActivatedRoute, Router} from "@angular/router";
 import {ClientType} from "../../interfaces/clientType.interface";
 import {TableType} from "../../interfaces/tableType.interface";
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {ReservationType} from "../../interfaces/reservationType.interface";
 import {ReservationService} from "../../services/reservation/reservation.service";
-import {min} from "rxjs";
 import * as moment from 'moment';
 
 @Component({
@@ -18,14 +17,16 @@ export class ReserverComponent implements OnInit {
   currentTable!: TableType;
   dateSelected!: Date
 
+
   reservationForm: FormGroup;
   tableOccupied: boolean = false;
   dateOutOfDate: boolean = false;
 
   constructor(
+    private _router: Router,
     private _route: ActivatedRoute,
     private _reservationService: ReservationService,
-    private formBuilder: FormBuilder
+    private formBuilder: FormBuilder,
   ) {
     this.reservationForm = this.formBuilder.group({
       name: [
@@ -71,7 +72,7 @@ export class ReserverComponent implements OnInit {
         this.dateSelected = JSON.parse(params['dateSelected']) as Date;
       }
     });
-    const dateFormatted = moment( this.dateSelected).format('YYYY-MM-DD');
+    const dateFormatted = moment(this.dateSelected).format('YYYY-MM-DD');
 
     this.reservationForm.patchValue({
       date: dateFormatted,
@@ -92,9 +93,8 @@ export class ReserverComponent implements OnInit {
 
       this._reservationService.postReservation(reservationData).subscribe(
         (reservation: ReservationType) => {
-          console.log(reservation)
+
           this.reservationForm.reset();
-          //modal
           window.history.back();
 
         },
@@ -118,5 +118,4 @@ export class ReserverComponent implements OnInit {
   }
 
 
-  protected readonly min = min;
 }

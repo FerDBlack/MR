@@ -14,9 +14,9 @@ import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {TablesMapComponent} from './shared/tables-map/tables-map.component';
 import {PipesModule} from "./pipes/pipes.module";
 import {HttpClientModule} from "@angular/common/http";
-import {ToastComponent} from './shared/toast/toast.component';
 import {ReserverComponent} from './shared/reserver/reserver.component';
-import { ProfileCardComponent } from './shared/profile-card/profile-card.component';
+import {ProfileCardComponent} from './shared/profile-card/profile-card.component';
+import { ContactComponent } from './pages/contact/contact.component';
 
 @NgModule({
   declarations: [
@@ -27,9 +27,9 @@ import { ProfileCardComponent } from './shared/profile-card/profile-card.compone
     ReservationsComponent,
     ReservationFormComponent,
     TablesMapComponent,
-    ToastComponent,
     ReserverComponent,
     ProfileCardComponent,
+    ContactComponent,
   ],
   imports: [
     BrowserModule,

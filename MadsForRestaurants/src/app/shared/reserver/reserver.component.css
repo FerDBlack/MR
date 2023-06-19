@@ -6,3 +6,8 @@
 .form-error{
   color: darkred;
 }
+
+#warning{
+  text-align: center;
+  margin-top: 10px;
+}

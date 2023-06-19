@@ -1,4 +1,4 @@
-import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {TableType} from "../../interfaces/tableType.interface";
 import {WorkerType} from "../../interfaces/workerType.interface";
 import {TableService} from "../../services/table/table.service";
@@ -33,11 +33,12 @@ export class ReservationsComponent implements OnInit {
   minDate: string;
   maxDate: string;
   dateSelectedOutOfDate: boolean = false;
-
+  displayStyle: string = "none";
   constructor(
     private _tableService: TableService,
     private _reservationService: ReservationService,
     private _clientService: ClientService,
+
   ) {
     this.dateSelected = new Date()
     const date = new Date();
@@ -47,6 +48,10 @@ export class ReservationsComponent implements OnInit {
 
 
   }
+
+
+
+
 
   ngOnInit(): void {
 
@@ -76,6 +81,7 @@ export class ReservationsComponent implements OnInit {
 
 
   }
+
 
   onDateChange(event: any) {
     this.dateSelected = new Date(event.target.value);
@@ -107,6 +113,7 @@ export class ReservationsComponent implements OnInit {
   }
 
   checkClient() {
+
     this._clientService.getCheckClient(this.name, this.phone).subscribe(
       (client: ClientType) => {
         this.activateEditEvent = false
@@ -163,4 +170,6 @@ export class ReservationsComponent implements OnInit {
   refreshTableOccupied() {
     this.tablesFiltered.map(table => table.occupied = false)
   }
+
+
 }
